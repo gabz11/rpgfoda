@@ -22,7 +22,7 @@ public class Cenario {
         // inicializa cond de derrota
         boolean jogador_vivo = jogador.getHp_atual() > 0;
         // booleano para modo
-        boolean aposentou ;
+        boolean aposentou;
 
 
         // se o modo for normal o jogador já começa com aposenta true, pois dependera no tanto de niveis
@@ -936,7 +936,7 @@ public class Cenario {
             {
 
                 jogador.getInv_jogador().getSlot_armadura().remove(0);
-                jogador.setMoedas(jogador.getMoedas() + preco_base);
+                jogador.setMoedas(jogador.getMoedas() + preco_total);
                 System.out.printf("%s ganhou %s πCoins.",jogador.getNome(),preco_total);
                 System.out.println();
                 jogador.VerDinheiro();
@@ -1643,7 +1643,7 @@ public class Cenario {
             {
 
                 jogador.getInv_jogador().getSlot_arma().remove(0);
-                jogador.setMoedas(jogador.getMoedas() + preco_base);
+                jogador.setMoedas(jogador.getMoedas() + preco_total);
                 System.out.printf("%s ganhou %s πCoins.",jogador.getNome(),preco_total);
                 System.out.println();
                 jogador.VerDinheiro();
@@ -1844,9 +1844,11 @@ public class Cenario {
             System.out.printf("%s",jogador.getInv_jogador().getSlot_arma().get(0).getNome());
             String desc = jogador.getInv_jogador().getSlot_arma().get(0).getDescricao();
             desc = printBonito(desc);
+            System.out.println();
             System.out.println(desc);
             System.out.println();
             jogador.getInv_jogador().getSlot_arma().get(0).DescreverAtributosModificador();
+            System.out.println();
             String descartar = RetornaStr("ENTER - Continuar | D - Descartar");
             if (descartar.equals("d") || descartar.equals("D"))
             {
@@ -1868,9 +1870,11 @@ public class Cenario {
             System.out.printf("%s",jogador.getInv_jogador().getSlot_armadura().get(0).getNome());
             String desc = jogador.getInv_jogador().getSlot_armadura().get(0).getDescricao();
             desc = printBonito(desc);
+            System.out.println();
             System.out.println(desc);
             System.out.println();
             jogador.getInv_jogador().getSlot_armadura().get(0).DescreverAtributosModificador();
+            System.out.println();
             String descartar = RetornaStr("ENTER - Continuar | D - Descartar");
             if (descartar.equals("d") || descartar.equals("D"))
             {
@@ -2161,6 +2165,7 @@ public class Cenario {
                                 System.out.printf("%s vendeu %s!", jogador.getNome(),
                                         jogador.getInv_jogador().getConsumivels().get(id_item_int).getNome());
                                 System.out.println();
+                                jogador.setMoedas(jogador.getMoedas() + preco_total);
                                 jogador.VerDinheiro();
                                 Pausa();
                                 // DELETA
@@ -4235,9 +4240,6 @@ public class Cenario {
             }
         }
     }
-
-
-
     String printBonito(String texto)
     {
         texto = texto.replaceAll("(.{64})", "$1\n");
